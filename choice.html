@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор Роли</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, rgb(240, 204, 204) 0%, rgb(255, 255, 255) 50%, rgb(250, 210, 210) 100%);
+            font-family:'Courier New', Courier, monospace;
+        
+        }
+        header {
+            background: #c93945;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 82vh;
+            flex-direction: column;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6767;
+            color: white;
+        }
+        button:hover {
+            background-color: #c72b2b;
+        }
+        footer {
+            text-align: center;
+            background:  #641d1d;
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
+       
+
+        button {
+            font-family:'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Система Управления Заказами</h1>
+    </header>
+
+ 
+
+    <div class="background"></div>
+    <div class="container">
+        <h1 id="hh">Выберите вашу роль</h1>
+        <button onclick="redirectToPassenger()">Я пассажир</button>
+        <button onclick="redirectToDriver()">Я водитель</button>
+    </div>
+    <footer>
+        <p>© 2024 Система Управления Заказами водного транспорта г. Москвы</p>
+    </footer>
+    <script>
+        function redirectToPassenger() {
+            window.location.href = 'passenger.html'; 
+        }
+
+        function redirectToDriver() {
+            window.location.href = 'driver.html'; 
+        }
+    </script>
+</body>
+</html>

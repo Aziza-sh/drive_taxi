@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление Заказами</title>
+    <style>
+        body {
+            font-family:'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #c93945;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    
+        nav a {
+            margin: 0 15px;
+            color: #35424a;
+            text-decoration: none;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            font-size: 18px;
+
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #641d1d;
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .order-form, .order-status {
+            background: #ffffff;
+            font-size: 18px;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .error {
+            color: red;
+        }
+        #button_sur {
+            font-family:'Courier New', Courier, monospace;
+            font-size: 15px;
+            color: #ffffff;
+            background-color: #c93945;
+        }
+        #button_submit {
+            font-size: 15px;
+            font-family:'Courier New', Courier, monospace;
+            color: #ffffff;
+            background-color: #c93945;
+        }
+        #from-station {
+            font-family:'Courier New', Courier, monospace;
+            font-size: 15px;
+        }
+        #to-station {
+            font-family:'Courier New', Courier, monospace;
+            font-size: 15px;
+        }
+        #tariff {
+            font-family:'Courier New', Courier, monospace;
+            font-size: 15px;
+        }
+        #payment {
+            font-family:'Courier New', Courier, monospace;
+            font-size: 15px;
+        } 
+        option {
+            font-family:'Courier New', Courier, monospace;
+        }
+        input {
+            font-family:'Courier New', Courier, monospace;
+            font-size: 15px;
+        }
+        #cancel-reason {
+            font-family:'Courier New', Courier, monospace;
+            font-size: 18px;
+        }
+        #cancel-order {
+            font-family:'Courier New', Courier, monospace;
+            font-size: 15px;
+            color: #ffffff;
+            background-color: #c93945;
+        }
+        #reason {
+            font-family:'Courier New', Courier, monospace;
+            font-size: 15px;
+        }
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Система Управления Заказами для пассажира</h1>
+    </header>
+    
+    
+    <div class="container">
+        <section id="order" class="order-form">
+            <h2>Оформление Заказа</h2>
+            <form onsubmit="return handleOrderSubmit(event)">
+                <label for="name">Имя:</label><br>
+                <input type="text" id="name" name="name" required><br>
+                <p> </p>
+                <label for="from-station">Станция отправления:</label><br>
+                <select id="from-station" name="from-station" required>
+                    <option value="Станция 1">Автозаводский мост</option>
+                    <option value="Станция 2">Андреевский</option>
+                    <option value="Станция 3">Береговой</option>
+                    <option value="Станция 4">Воробьевы горы</option>
+                    <option value="Станция 5">Зарядье</option>
+                    <option value="Станция 6">Захарково</option>
+                    <option value="Станция 7">ЗИЛ</option>
+                    <option value="Станция 8">Киевский</option>
+                    <option value="Станция 9">Китай-город</option>
+                    <option value="Станция 10">Кленовый бульвар</option>
+                    <option value="Станция 11">Красный октябрь</option>
+                    <option value="Станция 12">Крымский мост</option>
+                    <option value="Станция 13">Кутузовский</option>
+                    <option value="Станция 14">Лужники-Северный</option>
+                    <option value="Станция 15">Лужники-Центральный</option>
+                    <option value="Станция 16">Марьино</option>
+                    <option value="Станция 17">Меловой</option>
+                    <option value="Станция 18">Нагатинский затон</option>
+                    <option value="Станция 19">Нескучный сад</option>
+                    <option value="Станция 20">Новоспасский</option>
+                    <option value="Станция 21">Парк Горьково</option>
+                    <option value="Станция 22">Парк Фили</option>
+                    <option value="Станция 23">Патриарший</option>
+                    <option value="Станция 24">Печатники</option>
+                    <option value="Станция 25">Северный речной вокзал</option>
+                    <option value="Станция 26">Сердце Столицы</option>
+                    <option value="Станция 27">Серебряный бор-2</option>
+                    <option value="Станция 28">Серебряный бор-3</option>
+                    <option value="Станция 29">Сити-Багратион</option>
+                    <option value="Станция 30">Сити-Центральный</option>
+                    <option value="Станция 31">Сити-Экспоцентр</option>
+                    <option value="Станция 32">Третьяковский</option>
+                    <option value="Станция 33">Трёхгорный</option>
+                    <option value="Станция 34">Троицке-Лыково</option>
+                    <option value="Станция 35">Химки</option>
+                    <option value="Станция 36">Южный речной вокзал</option>
+                    
+                    
+                </select><br>
+                <p> </p>
+                <label for="to-station">Станция назначения:</label><br>
+                <select id="to-station" name="to-station" required>
+                    <option value="Станция 1">Автозаводский мост</option>
+                    <option value="Станция 2">Андреевский</option>
+                    <option value="Станция 3">Береговой</option>
+                    <option value="Станция 4">Воробьевы горы</option>
+                    <option value="Станция 5">Зарядье</option>
+                    <option value="Станция 6">Захарково</option>
+                    <option value="Станция 7">ЗИЛ</option>
+                    <option value="Станция 8">Киевский</option>
+                    <option value="Станция 9">Китай-город</option>
+                    <option value="Станция 10">Кленовый бульвар</option>
+                    <option value="Станция 11">Красный октябрь</option>
+                    <option value="Станция 12">Крымский мост</option>
+                    <option value="Станция 13">Кутузовский</option>
+                    <option value="Станция 14">Лужники-Северный</option>
+                    <option value="Станция 15">Лужники-Центральный</option>
+                    <option value="Станция 16">Марьино</option>
+                    <option value="Станция 17">Меловой</option>
+                    <option value="Станция 18">Нагатинский затон</option>
+                    <option value="Станция 19">Нескучный сад</option>
+                    <option value="Станция 20">Новоспасский</option>
+                    <option value="Станция 21">Парк Горьково</option>
+                    <option value="Станция 22">Парк Фили</option>
+                    <option value="Станция 23">Патриарший</option>
+                    <option value="Станция 24">Печатники</option>
+                    <option value="Станция 25">Северный речной вокзал</option>
+                    <option value="Станция 26">Сердце Столицы</option>
+                    <option value="Станция 27">Серебряный бор-2</option>
+                    <option value="Станция 28">Серебряный бор-3</option>
+                    <option value="Станция 29">Сити-Багратион</option>
+                    <option value="Станция 30">Сити-Центральный</option>
+                    <option value="Станция 31">Сити-Экспоцентр</option>
+                    <option value="Станция 32">Третьяковский</option>
+                    <option value="Станция 33">Трёхгорный</option>
+                    <option value="Станция 34">Троицке-Лыково</option>
+                    <option value="Станция 35">Химки</option>
+                    <option value="Станция 36">Южный речной вокзал</option>
+                </select><br>
+                <p> </p>
+                <label for="tariff">Выберите тариф:</label><br>
+                <select id="tariff" name="tariff" required>
+                    <option value="standard">Стандартный</option>
+                    <option value="premium">Премиум</option>
+                    <option value="luxury">Люкс</option>
+                </select><br>
+                <p> </p>
+                <label for="payment">Способ оплаты:</label><br>
+                <select id="payment" name="payment" required>
+                    <option value="cash">Наличные</option>
+                    <option value="card">Карта</option>
+                    <option value="online">СПБ</option>
+                    <option value="troika">Тройка</option>
+                </select><br>
+                <p> </p>
+                <input id="button_sur" type="submit" value="Оформить Заказ">
+            </form>
+            <div id="order-number" style="margin-top: 20px;"></div>
+        </section>
+        <section id="manage" class="order-status">
+            <h2>Управление Заказами</h2>
+            <div id="order-info"></div>
+            <p> </p>
+            <button id="cancel-order" style="display:none;" onclick="toggleCancelReason()">Отменить Заказ</button>
+            <div id="cancel-reason" style="display:none;">
+                <p> </p>
+                <label for="reason">Причина отмены:</label>
+                <select id="reason">
+                    <option value="не нужно">Не нужно</option>
+                    <option value="долго ждал">Долго ждал</option>
+                    <option value="другое">Другое</option>
+                </select>
+                <button id="button_sur" onclick="cancelOrder()">Подтвердить Отмену</button>
+            </div>
+        </section>
+        <section id="track" class="order-status">
+            <h2>Отслеживание Поездки</h2>
+            <p>Введите номер заказа для отслеживания:</p>
+            <form onsubmit="return handleTrackSubmit(event)">
+                <label for="order-number-input">Номер Заказа:</label><br>
+                <input type="text" id="order-number-input" name="order-number" required><br>
+                <p> </p>
+                <input id='button_submit' type="submit" value="Отследить">
+            </form>
+            <div id="tracking-info" style="margin-top: 20px;"></div>
+        </section>
+    </div>
+    <footer>
+        <p>© 2024 Система Управления Заказами водного транспорта г. Москвы</p>
+    </footer>
+    <script>
+        let orderCount = 0;
+        const orders = {};
+
+        function handleOrderSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const fromStation = document.getElementById('from-station').value;
+            const toStation = document.getElementById('to-station').value;
+            const tariff = document.getElementById('tariff').value;
+            const payment = document.getElementById('payment').value;
+
+            orderCount++;
+            const orderNumber = `Заказ №${orderCount}`;
+            const driverInfo = `Водитель: ???, Тариф: ${tariff}, Станция отправления: ${fromStation}, Станция назначения: ${toStation}, Ожидаемое время прибытия: ${tariff === 'standard' ? '???  мин' : tariff === 'premium' ? '10 мин' : '5 мин'}`;
+
+            orders[orderNumber] = { name, fromStation, toStation, tariff, payment, driverInfo, delay: 0, canceled: false };
+            document.getElementById('order-number').innerText = `Ваш номер заказа: ${orderNumber}`;
+            document.getElementById('order-info').innerText = driverInfo;
+            document.getElementById('cancel-order').style.display = 'block';
+        }
+
+        function handleTrackSubmit(event) {
+            event.preventDefault();
+            const orderNumber = document.getElementById('order-number-input').value;
+            const order = orders[orderNumber];
+
+            if (order) {
+                if (order.canceled) {
+                    document.getElementById('tracking-info').innerText = 'Заказ был отменён.';
+                } else {
+                    const trackingMessage = order.delay > 0
+                        ? `Информация о заказе: ${order.driverInfo}. Задержка: <span class="error">${order.delay} мин</span>`
+                        : `Информация о заказе: ${order.driverInfo}.`;
+                    document.getElementById('tracking-info').innerHTML = trackingMessage;
+                }
+            } else {
+                document.getElementById('tracking-info').innerText = 'Заказ не найден.';
+            }
+        }
+
+        function toggleCancelReason() {
+            const cancelDiv = document.getElementById('cancel-reason');
+            cancelDiv.style.display = cancelDiv.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function cancelOrder() {
+            const orderNumber = document.getElementById('order-number').innerText.split(': ')[1];
+            if (orderNumber && orders[orderNumber]) {
+                orders[orderNumber].canceled = true; 
+                alert('Заказ отменён.');
+                document.getElementById('order-info').innerText = '';
+                document.getElementById('order-number').innerText = '';
+                document.getElementById('cancel-order').style.display = 'none';
+            }
+        }
+        function rejectOrder() {
+            alert('Вы отказались от заказа.');
+            document.getElementById('order-summary').innerHTML = '';
+            document.getElementById('driver-form').reset();
+        }
+        function updateDriverInfo(orderNumber, driverName) {
+            if (orders[orderNumber]) {
+                orders[orderNumber].driverInfo = 'Водитель: ${driverName}';
+                updateDriverInfo(orderNumber);
+            }
+        }
+
+    </script>
+</body>
+</html>
